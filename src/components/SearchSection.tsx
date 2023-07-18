@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import SearchInput from './SearchInput';
+import SearchInputBar from './search/SearchInputBar';
 
 const SearchSection = () => {
   return (
@@ -10,7 +10,7 @@ const SearchSection = () => {
           <br />
           온라인으로 참여하기
         </h2>
-        <SearchInput />
+        <SearchInputBar />
       </BoxStyle>
     </ContainerStyle>
   );

@@ -1,12 +1,12 @@
 import { styled } from 'styled-components';
-import KeywordLine from './SearchItem';
+import SearchItem from './SearchItem';
 
 const SearchRecommend = () => {
   return (
     <>
       <TitleStyle>최근 검색어</TitleStyle>
       <DefaultTextStyle>최근 검색어가 없습니다</DefaultTextStyle>
-      <KeywordLine text={'B형간염'} />
+      <SearchItem text={'B형간염'} />
       <HrStyle />
       <TitleStyle>추천 검색어로 검색해보세요</TitleStyle>
       <RecommendDivStyle>

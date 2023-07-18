@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import SearchItem from './SearchItem';
 import { getSickList } from '../../apis/sick';
 import { GetSickList } from '../../types/sick';
+import useDebounce from '../../hooks/useDebounce';
 
 interface PropsType {
   inputValue: string;
@@ -11,16 +12,18 @@ interface PropsType {
 const SearchRecommend = ({ inputValue }: PropsType) => {
   const [data, setData] = useState<GetSickList[]>();
 
+  const debouncedText = useDebounce(inputValue);
+
   const getSick = useCallback(async () => {
     try {
-      const response = await getSickList(inputValue);
+      const response = await getSickList(debouncedText);
       setData(response);
 
       console.info('calling api');
     } catch (error) {
       console.error(error);
     }
-  }, [inputValue]);
+  }, [debouncedText]);
 
   useEffect(() => {
     getSick();

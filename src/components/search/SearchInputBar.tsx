@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import SearchRecommend from './SearchRecommend';
 import SearchRecent from './SearchRecent';
+import useSickList from '../../hooks/useSickList';
+import useKeyFocus from '../../hooks/useKeyFocus';
 import { ReactComponent as SearchIcon } from '../../assets/SearchIcon.svg';
 import { ReactComponent as CloseIcon } from '../../assets/CloseIcon.svg';
 
@@ -10,13 +12,21 @@ const SearchInput = () => {
 
   const [inputValue, setInputValue] = useState('');
 
+  const { data, isLoading } = useSickList(inputValue);
+
   const inputClose = () => {
     setVisible(prev => !prev);
     setInputValue('');
   };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
+
+  const { focusedIndex, onKeyDown } = useKeyFocus({
+    value: inputValue,
+    length: data?.length,
+  });
 
   return (
     <ContainerStyle $onSearch={visible}>
@@ -29,6 +39,7 @@ const SearchInput = () => {
                 value={inputValue}
                 onInput={e => setInputValue(e.currentTarget.value)}
                 spellCheck={false}
+                onKeyDown={onKeyDown}
                 autoFocus
               />
               <span onClick={inputClose}>
@@ -49,7 +60,12 @@ const SearchInput = () => {
       {visible && (
         <WordBoxStyle>
           {inputValue ? (
-            <SearchRecommend inputValue={inputValue} />
+            <SearchRecommend
+              inputValue={inputValue}
+              data={data}
+              isLoading={isLoading}
+              focusedIndex={focusedIndex}
+            />
           ) : (
             <SearchRecent />
           )}

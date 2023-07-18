@@ -1,38 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import SearchItem from './SearchItem';
-import { getSickList } from '../../apis/sick';
 import { GetSickList } from '../../types/sick';
-import useDebounce from '../../hooks/useDebounce';
 
 interface PropsType {
   inputValue: string;
+  data: GetSickList[] | undefined;
+  isLoading: boolean;
+  focusedIndex: number | null;
 }
 
-const SearchRecommend = ({ inputValue }: PropsType) => {
-  const [data, setData] = useState<GetSickList[]>();
-  const [isLoading, setIsLoading] = useState(false);
-
-  const debouncedText = useDebounce(inputValue);
-
-  const getSick = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const response = await getSickList(debouncedText);
-      setData(response);
-
-      console.info('calling api');
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [debouncedText]);
-
-  useEffect(() => {
-    getSick();
-  }, [getSick]);
-
+const SearchRecommend = ({
+  inputValue,
+  data,
+  isLoading,
+  focusedIndex,
+}: PropsType) => {
   return (
     <>
       <SearchItem text={inputValue} />
@@ -40,9 +22,13 @@ const SearchRecommend = ({ inputValue }: PropsType) => {
       {isLoading ? (
         <TextStyle>Loading...</TextStyle>
       ) : data?.length ? (
-        data
-          ?.slice(0, 7)
-          .map((item, idx) => <SearchItem key={idx} text={item.sickNm} />)
+        data?.map((item, idx) => (
+          <SearchItem
+            key={idx}
+            text={item.sickNm}
+            isFocused={focusedIndex === idx}
+          />
+        ))
       ) : (
         <TextStyle>추천 검색어가 없습니다.</TextStyle>
       )}

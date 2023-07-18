@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import KeywordLine from '../common/KeywordLine';
+import KeywordLine from './SearchItem';
 
 const SearchRecommend = () => {
   return (

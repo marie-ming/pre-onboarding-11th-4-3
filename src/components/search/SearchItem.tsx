@@ -5,7 +5,7 @@ interface PropsType {
   text: string;
 }
 
-const KeywordLine = ({ text }: PropsType) => {
+const SearchItem = ({ text }: PropsType) => {
   return (
     <TextStyle>
       <SearchIcon />
@@ -14,7 +14,7 @@ const KeywordLine = ({ text }: PropsType) => {
   );
 };
 
-export default KeywordLine;
+export default SearchItem;
 
 const TextStyle = styled.span`
   display: flex;

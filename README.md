@@ -1,46 +1,76 @@
-# Getting Started with Create React App
+# 한국임상정보 검색창 클론코딩
+  Team3 - 정민지
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<br/>
 
-In the project directory, you can run:
+## 🗓️ 기간
 
-### `npm start`
+- 2023년 7월 16일 ~ 2023년 07월 19일
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🧭 목표
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 검색창 구현 + 검색어 추천 기능 구현 + 캐싱 기능 구현
+- [한국임상정보](https://clinicaltrialskorea.com/)의 검생창을 [assignment-api](https://github.com/walking-sunset/assignment-api)로 구현하기
 
-### `npm test`
+<br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ✅ Task
 
-### `npm run build`
+### ❗ 요구사항
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. 질환명 검색시 API 호출 통해서 검색어 추천 기능 구현
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   - 검색어가 없을 시 “검색어 없음” 표출
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. API 호출별로 로컬 캐싱 구현
 
-### `npm run eject`
+   - 캐싱 기능을 제공하는 라이브러리 사용 금지(React-Query 등)
+   - expire time 구현
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. 입력마다 API 호출하지 않도록 API 호출 횟수를 줄이는 전략 수립 및 실행
+4. API를 호출할 때 마다 `console.info("calling api")` 출력을 통해 콘솔창에서 API 호출 횟수 확인이 가능하도록 설정
+5. 키보드만으로 추천 검색어들로 이동 가능하도록 구현
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🛠️ Stacks
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![react](https://user-images.githubusercontent.com/123078739/234895132-18ab503a-fcc7-486d-b89a-cb0cc1f7796b.svg) ![eslint](https://user-images.githubusercontent.com/123078739/234895191-c1198a7b-9e2e-499a-8e61-c3b87bf8e2c2.svg)
+![prettier](https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black) ![Axios](https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white) ![typescript](https://user-images.githubusercontent.com/123078739/234895162-42f905c6-765d-44d2-bcb1-b011286ef6b2.svg) ![styledcomponents](https://user-images.githubusercontent.com/123078739/234895185-7fd6c334-faca-4520-8551-2f20b32f085e.svg)
 
-## Learn More
+<br/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🌳 File Tree
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+📦src
+┣ 📂apis
+┃ ┣ 📜index.ts
+┃ ┗ 📜sick.ts
+┣ 📂assets
+┃ ┣ 📜CloseIcon.svg
+┃ ┗ 📜SearchIcon.svg
+┣ 📂components
+┃ ┣ 📂search
+┃ ┃ ┣ 📜SearchInputBar.tsx
+┃ ┃ ┣ 📜SearchItem.tsx
+┃ ┃ ┣ 📜SearchRecent.tsx
+┃ ┃ ┗ 📜SearchRecommend.tsx
+┃ ┗ 📜SearchSection.tsx
+┣ 📂constants
+┃ ┣ 📜api.ts
+┃ ┗ 📜cache.ts
+┣ 📂hooks
+┃ ┣ 📜useCache.ts
+┃ ┣ 📜useDebounce.ts
+┃ ┣ 📜useKeyFocus.ts
+┃ ┗ 📜useSickData.ts
+┣ 📂interfaces
+┃ ┗ 📜sick.ts
+┣ 📜App.tsx
+┣ 📜GlobalStyle.ts
+┣ 📜index.tsx
+┗ 📜react-app-env.d.ts
+
+```

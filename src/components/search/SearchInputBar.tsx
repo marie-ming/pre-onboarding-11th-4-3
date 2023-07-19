@@ -62,6 +62,7 @@ const SearchInput = () => {
           {inputValue ? (
             <SearchRecommend
               inputValue={inputValue}
+              setInputValue={setInputValue}
               data={data}
               isLoading={isLoading}
               focusedIndex={focusedIndex}

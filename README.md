@@ -41,6 +41,12 @@
 
 <br/>
 
+### 📍 기능
+
+![ezgif com-video-to-gif](https://github.com/wanted-pre-onboarding-11th-team3/pre-onboarding-11th-3-3/assets/44185091/45248bc1-4fda-4611-8876-d9c8ef12caad)
+
+<br/>
+
 ### 🌳 File Tree
 
 ```
@@ -74,3 +80,21 @@
 ┗ 📜react-app-env.d.ts
 
 ```
+
+## ✨ 구현 내용
+
+### 📌 API 호출별로 로컬 캐싱 구현 `useCache`
+- 상태에 `key` input으로 입력 받은 값, `value` 추천 검색어들, `expireTime` 만료 시간을 객체의 배열로 저장하도록 하였습니다.
+- input에 값이 입력되면 `key`가 존재하는지와 만료 시간 확인 후 조건에 맞으면 저장된 값들을 불러오고 그렇지 않으면 api를 호출합니다.
+- api가 호출되면  `key` `value` `expireTime` 가 저장됩니다.
+
+
+
+### 📌 API 호출 횟수를 줄이는 기능 구현 `useDebounce`
+  - 사용자가 입력을 마친 뒤 지정된 시간 이후 API 호출이 이루어지도록 Debounce를 사용하여 구현하였습니다.
+
+### 📌 키보드만으로 추천 검색어들로 이동 기능 구현 `useKeyFocus`
+- 키보드 이벤트를 받아 `ArrowUp`, `ArrowDown`, `Enter` 키가 각각 다른 동작을 수행하도록 하였습니다.
+- 방향키 `ArrowUp` 일 때는 index 를 1씩 감소시키고, 방향키 `ArrowDown` 일 때는 index 를 1씩 증가시켜 `focusedIndex`의 상태로 관리됩니다.
+- `Enter` 키를 입력했을 경우 해당 index의 text를 input에 반영되도록 구현하였습니다.
+

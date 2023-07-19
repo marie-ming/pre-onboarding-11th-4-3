@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getSickList } from '../apis/sick';
-import { GetSickList } from '../types/sick';
+import { GetSickList } from '../interface/sick';
 import useDebounce from './useDebounce';
 
 const useSickList = (value: string) => {

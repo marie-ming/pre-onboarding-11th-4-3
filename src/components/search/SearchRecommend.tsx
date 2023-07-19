@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import SearchItem from './SearchItem';
-import { GetSickList } from '../../types/sick';
+import { GetSickList } from '../../interface/sick';
 
 interface PropsType {
   inputValue: string;

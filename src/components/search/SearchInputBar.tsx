@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import SearchRecommend from './SearchRecommend';
 import SearchRecent from './SearchRecent';
-import useSickList from '../../hooks/useSickList';
+import useSickData from '../../hooks/useSickData';
 import useKeyFocus from '../../hooks/useKeyFocus';
 import { ReactComponent as SearchIcon } from '../../assets/SearchIcon.svg';
 import { ReactComponent as CloseIcon } from '../../assets/CloseIcon.svg';
@@ -12,7 +12,7 @@ const SearchInput = () => {
 
   const [inputValue, setInputValue] = useState('');
 
-  const { data, isLoading } = useSickList(inputValue);
+  const { data, isLoading } = useSickData(inputValue);
 
   const inputClose = () => {
     setVisible(prev => !prev);

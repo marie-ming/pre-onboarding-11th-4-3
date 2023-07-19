@@ -25,7 +25,8 @@ const SearchInput = () => {
 
   const { focusedIndex, onKeyDown } = useKeyFocus({
     value: inputValue,
-    length: data?.length,
+    data: data,
+    setInputValue: setInputValue,
   });
 
   return (

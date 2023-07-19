@@ -17,7 +17,7 @@ const SearchRecommend = ({
 }: PropsType) => {
   return (
     <>
-      <SearchItem text={inputValue} />
+      <SearchItem text={inputValue} bold={600} />
       <TitleStyle>추천 검색어</TitleStyle>
       {isLoading ? (
         <TextStyle>Loading...</TextStyle>

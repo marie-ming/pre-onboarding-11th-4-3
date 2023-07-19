@@ -4,11 +4,12 @@ import { ReactComponent as SearchIcon } from '../../assets/SearchIcon.svg';
 interface PropsType {
   text: string;
   isFocused?: boolean;
+  bold?: number;
 }
 
-const SearchItem = ({ text, isFocused = false }: PropsType) => {
+const SearchItem = ({ text, isFocused = false, bold = 400 }: PropsType) => {
   return (
-    <TextStyle $isFocused={isFocused}>
+    <TextStyle $isFocused={isFocused} bold={bold}>
       <SearchIcon />
       {text}
     </TextStyle>
@@ -17,7 +18,7 @@ const SearchItem = ({ text, isFocused = false }: PropsType) => {
 
 export default SearchItem;
 
-const TextStyle = styled.span<{ $isFocused: boolean }>`
+const TextStyle = styled.span<{ $isFocused: boolean; bold: number }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -28,6 +29,7 @@ const TextStyle = styled.span<{ $isFocused: boolean }>`
   word-break: break-all;
 
   background: ${props => (props.$isFocused ? 'rgb(248, 249, 250)' : '#FFFFFF')};
+  font-weight: ${props => props.bold};
 
   &:hover {
     background: rgb(248, 249, 250);

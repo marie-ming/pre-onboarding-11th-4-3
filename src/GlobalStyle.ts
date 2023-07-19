@@ -9,6 +9,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+  body{
+    background-color: rgb(244, 246, 250);
+  }
   
   ul,li {
     list-style: none;
